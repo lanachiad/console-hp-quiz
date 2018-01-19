@@ -14,6 +14,8 @@ CODING CHALLENGE 4 from The Complete JavaScript Course from Udemy by Jonas Schme
   3. Store them all inside an array
 
   4. **It originally said to choose a random question (see below), but I chose to loop through all the questions that I had and then end the quiz after all questions had been asked**
+     
+
      Select one random question and log it on the console, together with the possible
      answers (each question should have a number). HINT: write a method for the Question
      objects for this task
