@@ -1,97 +1,60 @@
-(function() {
-  function Question(question, answerChoices, correctAnswer) {
-    this.question = question;
-    this.answerChoices = answerChoices;
-    this.correctAnswer = correctAnswer;
+var Question = function(question, answerChoices, correctAnswer) {
+  this.question = question;
+  this.answerChoices = answerChoices;
+  this.correctAnswer = correctAnswer;
+};
+
+Question.prototype.displayQuestion = function() {
+  console.log(this.question);
+  for (var i = 0; i < this.answerChoices.length; i++) {
+    console.log(i + ': ' + this.answerChoices[i]);
   }
+};
 
-  Question.prototype.displayQuestion = function() {
-    console.log(this.question);
-    for (var i = 0; i < this.answerChoices.length; i++) {
-      console.log(i + ': ' + this.answerChoices[i]);
-    }
-  };
-
-  Question.prototype.checkAnswer = function(guess, callback) {
-    var sc;
-
-    if (this.answerChoices[guess] === this.correctAnswer) {
-      console.log('Correct!');
-      sc = callback(true);
-    } else {
-      console.log('Incorrect!');
-      sc = callback(false);
-    }
-
-    this.displayScore(sc);
-  };
-
-  Question.prototype.displayScore = function(score) {
-    console.log('Your score is ' + score);
-    console.log('----------------------------------------------------');
-  };
-
-  var q1 = new Question(
-    "What is the shape of Harry's scar?",
-    ['wand', 'lightening bolt', 'cat', 'hippogriff'],
-    'lightening bolt'
-  );
-
-  var q2 = new Question(
-    "What platform does the Hogwarts Express arrive on in King's Cross",
-    ['9 3/4', '7', '40'],
-    '9 3/4'
-  );
-
-  var q3 = new Question(
-    "What is the name of Harry's best friends?",
-    ['Jon and Hermione', 'Ron and Hermy', 'Ron and Hermione'],
-    'Ron and Hermione'
-  );
-
-  var q4 = new Question(
-    "What is the name of Harry's pet owl?",
-    ['Arnold', 'Hedwig', 'Timmy', 'Oswald', 'Henry'],
-    'Hedwig'
-  );
-
-  var q5 = new Question(
-    "What is the trio's favorite drink to get in Hogsmede?",
-    ['Butterbeer', 'Firewhiskey', 'Pumpkin Juice', 'Fizzing Drinkie'],
-    'Butterbeer'
-  );
-
-  var allQuestions = [q1, q2, q3, q4, q5];
-
-  function score() {
-    var sc = 0;
-    return function(correct) {
-      if (correct) {
-        sc++;
-      }
-      return sc;
-    };
+Question.prototype.checkAnswer = function(response, fn) {
+  if (this.answerChoices[response] === this.correctAnswer) {
+    console.log('Correct!');
+    fn(true);
+  } else {
+    console.log('Incorrect!');
+    fn(false);
   }
+};
 
-  var keepScore = score();
+var q1 = new Question('How many sickles are in a galleon?', [20, 18, 17, 29, 15], 17);
+var q2 = new Question(
+  'What division in the Ministry of Mangic does Arthur Weasley work in?',
+  [
+    'Department of Mysteries',
+    'Magical Law Enforcement Patrol',
+    'Misuse of Muggle Artefacts Office',
+    'Improper Use of Magic Office'
+  ],
+  'Misuse of Muggle Artefacts Office'
+);
+var q3 = new Question(
+  'What incantation fixes a broken Vanishing Cabinet?',
+  ['Harmonia Nectere Passus', 'Anteoculatia', 'Ventus Duo', 'Reparo'],
+  'Harmonia Nectere Passus'
+);
 
-  function nextQuestion() {
-    for (var i = 0; i < allQuestions.length; i++) {
-      currentQuestion = allQuestions[i];
+var allQuestions = [q1, q2, q3];
+var score = 0;
 
-      currentQuestion.displayQuestion();
-
-      var guess = prompt("Enter the correct answer's number. To exit game, enter 'exit'.");
-
-      if (guess !== 'exit') {
-        currentQuestion.checkAnswer(guess, keepScore);
-      } else {
-        console.log('Thanks for playing!');
-      }
-    }
-
-    console.log('You finished the quiz!');
+var keepScore = function() {
+  if (true) {
+    score++;
   }
+  console.log('Your current score is: ' + score);
+};
 
-  nextQuestion();
-})();
+var loopQuestions = function(arrayOfQuestions) {
+  for (var i = 0; i < arrayOfQuestions.length; i++) {
+    arrayOfQuestions[i].displayQuestion();
+    var guess = prompt('Enter the number of the correct answer');
+    arrayOfQuestions[i].checkAnswer(guess, keepScore);
+  }
+  console.log('End of quiz! Thanks for playing!');
+};
+
+loopQuestions(allQuestions);
