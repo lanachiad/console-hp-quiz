@@ -41,7 +41,7 @@ const q3 = new Question(
 const allQuestions = [q1, q2, q3];
 let score = 0;
 
-var keepScore = function(check) {
+function keepScore(check) {
   if (check === true) {
     score++;
     console.log('Correct!');
@@ -50,15 +50,15 @@ var keepScore = function(check) {
     console.log('Incorrect!');
     console.log('Your current score is: ' + score);
   }
-};
+}
 
-var loopQuestions = function(arrayOfQuestions) {
+function loopQuestions(arrayOfQuestions) {
   for (var i = 0; i < arrayOfQuestions.length; i++) {
     arrayOfQuestions[i].displayQuestion();
     var guess = prompt('Enter the number of the correct answer');
     arrayOfQuestions[i].checkAnswer(guess, keepScore);
   }
   console.log('End of quiz! Thanks for playing!');
-};
+}
 
 loopQuestions(allQuestions);
