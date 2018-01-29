@@ -7,7 +7,7 @@ class Question {
 
   displayQuestion() {
     console.log(this.question);
-    for (var i = 0; i < this.answerChoices.length; i++) {
+    for (let i = 0; i < this.answerChoices.length; i++) {
       console.log(i + ': ' + this.answerChoices[i]);
     }
   }
@@ -53,9 +53,9 @@ function keepScore(check) {
 }
 
 function loopQuestions(arrayOfQuestions) {
-  for (var i = 0; i < arrayOfQuestions.length; i++) {
+  for (let i = 0; i < arrayOfQuestions.length; i++) {
     arrayOfQuestions[i].displayQuestion();
-    var guess = prompt('Enter the number of the correct answer');
+    const guess = prompt('Enter the number of the correct answer');
     arrayOfQuestions[i].checkAnswer(guess, keepScore);
   }
   console.log('End of quiz! Thanks for playing!');
