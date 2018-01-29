@@ -21,8 +21,8 @@ class Question {
   }
 }
 
-var q1 = new Question('How many sickles are in a galleon?', [20, 18, 17, 29, 15], 17);
-var q2 = new Question(
+const q1 = new Question('How many sickles are in a galleon?', [20, 18, 17, 29, 15], 17);
+const q2 = new Question(
   'What division in the Ministry of Mangic does Arthur Weasley work in?',
   [
     'Department of Mysteries',
@@ -32,14 +32,14 @@ var q2 = new Question(
   ],
   'Misuse of Muggle Artefacts Office'
 );
-var q3 = new Question(
+const q3 = new Question(
   'What incantation fixes a broken Vanishing Cabinet?',
   ['Harmonia Nectere Passus', 'Anteoculatia', 'Ventus Duo', 'Reparo'],
   'Harmonia Nectere Passus'
 );
 
-var allQuestions = [q1, q2, q3];
-var score = 0;
+const allQuestions = [q1, q2, q3];
+let score = 0;
 
 var keepScore = function(check) {
   if (check === true) {
