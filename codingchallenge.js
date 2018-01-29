@@ -1,23 +1,25 @@
-var Question = function(question, answerChoices, correctAnswer) {
-  this.question = question;
-  this.answerChoices = answerChoices;
-  this.correctAnswer = correctAnswer;
-};
-
-Question.prototype.displayQuestion = function() {
-  console.log(this.question);
-  for (var i = 0; i < this.answerChoices.length; i++) {
-    console.log(i + ': ' + this.answerChoices[i]);
+class Question {
+  constructor(question, answerChoices, correctAnswer) {
+    this.question = question;
+    this.answerChoices = answerChoices;
+    this.correctAnswer = correctAnswer;
   }
-};
 
-Question.prototype.checkAnswer = function(response, fn) {
-  if (this.answerChoices[response] === this.correctAnswer) {
-    fn(true);
-  } else {
-    fn(false);
+  displayQuestion() {
+    console.log(this.question);
+    for (var i = 0; i < this.answerChoices.length; i++) {
+      console.log(i + ': ' + this.answerChoices[i]);
+    }
   }
-};
+
+  checkAnswer(response, fn) {
+    if (this.answerChoices[response] === this.correctAnswer) {
+      fn(true);
+    } else {
+      fn(false);
+    }
+  }
+}
 
 var q1 = new Question('How many sickles are in a galleon?', [20, 18, 17, 29, 15], 17);
 var q2 = new Question(
