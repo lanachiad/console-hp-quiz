@@ -13,10 +13,8 @@ Question.prototype.displayQuestion = function() {
 
 Question.prototype.checkAnswer = function(response, fn) {
   if (this.answerChoices[response] === this.correctAnswer) {
-    console.log('Correct!');
     fn(true);
   } else {
-    console.log('Incorrect!');
     fn(false);
   }
 };
@@ -41,11 +39,15 @@ var q3 = new Question(
 var allQuestions = [q1, q2, q3];
 var score = 0;
 
-var keepScore = function() {
-  if (true) {
+var keepScore = function(check) {
+  if (check === true) {
     score++;
+    console.log('Correct!');
+    console.log('Your current score is: ' + score);
+  } else {
+    console.log('Incorrect!');
+    console.log('Your current score is: ' + score);
   }
-  console.log('Your current score is: ' + score);
 };
 
 var loopQuestions = function(arrayOfQuestions) {
